@@ -78,7 +78,7 @@ public class LoginServletTest {
         new LoginServlet().doPost(requestMock, responseMock);
 
         verifyParameters(requestMock);
-        verify(responseMock, atLeast(1)).sendRedirect("MainPage.jsp");
+        verify(responseMock, atLeast(1)).sendRedirect(MAIN_PAGE);
     }
 
     @Test

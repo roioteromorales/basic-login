@@ -56,10 +56,10 @@ public class LoginScenariosIT {
 
     @Test
     public void userCannotAccessLoginProtectedPages_withoutLoginIn() throws Exception {
-        checkProtectedPage("http://localhost:9090/MainPage.jsp");
-        checkProtectedPage("http://localhost:9090/pages/page1.jsp");
-        checkProtectedPage("http://localhost:9090/pages/page2.jsp");
-        checkProtectedPage("http://localhost:9090/pages/page3.jsp");
+        checkProtectedPage("http://localhost:9090/protectedPages/MainPage.jsp");
+        checkProtectedPage("http://localhost:9090/protectedPages/page1.jsp");
+        checkProtectedPage("http://localhost:9090/protectedPages/page2.jsp");
+        checkProtectedPage("http://localhost:9090/protectedPages/page3.jsp");
     }
 
     private void checkProtectedPage(String protectedPage) {

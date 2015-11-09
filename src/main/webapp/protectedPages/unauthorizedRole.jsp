@@ -3,11 +3,11 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
         <title>Unauthorized Role</title>
-        <style><%@include file="/pages/css/dialogs.css" %></style>
+        <style><%@include file="/protectedPages/css/dialogs.css" %></style>
 
     </head>
     <body>
-           <%@include file="/pages/htmlTemplates/pagesMenu.html" %>
+           <%@include file="/protectedPages/htmlTemplates/pagesMenu.html" %>
         <%@ page import="com.roisoftstudio.Constants" %>
 
             <div class="isa_error" id="errorBox">
@@ -16,7 +16,7 @@
             </div>
 
         <div class="error"></div>
-        <%@include file="/pages/htmlTemplates/sessionButtons.html" %>
+        <%@include file="/protectedPages/htmlTemplates/sessionButtons.html" %>
 
     </body>
 </html>

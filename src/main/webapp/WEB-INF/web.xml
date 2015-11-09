@@ -10,7 +10,7 @@
     </description>
 
     <welcome-file-list>
-        <welcome-file>login.html</welcome-file>
+        <welcome-file>unprotectedPages/login.html</welcome-file>
     </welcome-file-list>
 
     <servlet>

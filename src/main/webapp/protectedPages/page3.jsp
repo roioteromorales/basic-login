@@ -8,12 +8,12 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
         <title>Page 3</title>
-        <style><%@include file="/pages/css/dialogs.css" %></style>
+        <style><%@include file="/protectedPages/css/dialogs.css" %></style>
     </head>
     <body>
-        <%@include file="/session/sessionValidator.jsp" %>
+        <%@include file="/protectedPages/session/sessionValidator.jsp" %>
 
-        <%@include file="/pages/htmlTemplates/pagesMenu.html" %>
+        <%@include file="/protectedPages/htmlTemplates/pagesMenu.html" %>
 
         <%@ page import="com.roisoftstudio.Constants" %>
         <div class="isa_success" id="successBox">
@@ -23,7 +23,7 @@
                 Allowed Roles:  <%=allowedRoles %>.<br>
         </div>
 
-        <%@include file="/pages/htmlTemplates/sessionButtons.html" %>
+        <%@include file="/protectedPages/htmlTemplates/sessionButtons.html" %>
 
     </body>
 </html>
