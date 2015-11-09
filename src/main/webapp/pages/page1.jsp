@@ -12,6 +12,7 @@
     </head>
     <body>
         <%@include file="/session/sessionValidator.jsp" %>
+
         <%@include file="/pages/htmlTemplates/pagesMenu.html" %>
 
         <%@ page import="com.roisoftstudio.Constants" %>
@@ -21,7 +22,6 @@
                 Hi <%=username %>, your role is <%=userRoles %><br>
                 Allowed Roles:  <%=allowedRoles %>.<br>
         </div>
-
 
         <%@include file="/pages/htmlTemplates/sessionButtons.html" %>
 

@@ -1,29 +1,29 @@
 #navigation {
- margin: 0;
- padding: 0 1em;
- background: #000;
- height: 3em;
- list-style: none;
+    margin: 0;
+    padding: 0 1em;
+    background: #000;
+    height: 3em;
+    list-style: none;
 }
 
 #navigation > li {
- float: left;
- height: 100%;
- margin-right: 0.5em;
- padding: 0 1em;
+    float: left;
+    height: 100%;
+    margin-right: 0.5em;
+    padding: 0 1em;
 }
 
 #navigation > li > a {
- float: left;
- height: 100%;
- color: #ffffff;
- text-decoration: none;
- line-height: 3;
- font-weight: bold;
- text-transform: uppercase;
+    float: left;
+    height: 100%;
+    color: #ffffff;
+    text-decoration: none;
+    line-height: 3;
+    font-weight: bold;
+    text-transform: uppercase;
 }
 
 #navigation > li > a:hover {
- color: orange;
- text-decoration: underline;
+    color: orange;
+    text-decoration: underline;
 }

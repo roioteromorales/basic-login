@@ -6,7 +6,6 @@ public class Constants {
                                                                 "<i class=\"fa fa-times-circle\"></i>\n" +
                                                                 INVALID_CREDENTIALS_ERROR_MESSAGE + "\n" +
                                                                 "</div>";
-    public static final String NO_CREDENTIALS_ERROR_MSG = "<font color=red>You need to login.</font>";
     public static final String UNAUTHORIZED_ERROR_MESSAGE = "You dont have access to this page";
     public static final int FIVE_MINUTES = 300;
     public static final String LOGIN_PAGE = "/login.html";
