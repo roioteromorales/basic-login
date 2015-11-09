@@ -16,14 +16,13 @@ import static com.roisoftstudio.Constants.*;
 import static com.roisoftstudio.login.servlets.ServletMocksHelper.prepareRequestMock;
 import static com.roisoftstudio.login.servlets.ServletMocksHelper.verifyParameters;
 import static com.roisoftstudio.login.users.Roles.*;
+import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.core.Is.is;
 import static org.mockito.Mockito.*;
 
 public class LoginServletTest {
 
     public static final String OUTPUT_FILE = "output";
-    public static final String EXTRA_CHARACTERS_ADDED = "\r\n";
     public static final String ADMIN = "admin";
     public static final String PASSWORD = "password";
 
@@ -97,6 +96,6 @@ public class LoginServletTest {
         verifyParameters(requestMock);
         writer.flush();
         String servletOutput = FileUtils.readFileToString(new File(OUTPUT_FILE), "UTF-8");
-        assertThat(servletOutput, is(INVALID_CREDENTIALS_ERROR + EXTRA_CHARACTERS_ADDED));
+        assertThat(servletOutput, containsString(INVALID_CREDENTIALS_ERROR));
     }
 }
