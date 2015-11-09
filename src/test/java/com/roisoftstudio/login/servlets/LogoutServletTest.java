@@ -24,6 +24,16 @@ public class LogoutServletTest {
     }
 
     @Test
+    public void servletDoGet_shouldRedirectToLoginPage() throws Exception {
+        HttpServletRequest requestMock =  mock(HttpServletRequest.class);
+        HttpServletResponse responseMock = mock(HttpServletResponse.class);
+
+        new LogoutServlet().doGet(requestMock, responseMock);
+
+        verify(responseMock, atLeast(1)).sendRedirect(LOGIN_PAGE);
+    }
+
+    @Test
     public void servletShouldDeleteCookie_whenLogout() throws Exception {
         Cookie cookieMock = prepareCookieMock(requestMock);
 

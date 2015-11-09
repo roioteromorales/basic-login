@@ -13,6 +13,11 @@ import static com.roisoftstudio.Constants.LOGIN_PAGE;
 public class LogoutServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.sendRedirect(LOGIN_PAGE);
+    }
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
         invalidateCookie(request, response);
@@ -22,7 +27,6 @@ public class LogoutServlet extends HttpServlet {
 
     private void invalidateSession(HttpServletRequest request) {
         HttpSession session = request.getSession(false);
-//        System.out.println("User=" + session.getAttribute(PARAMETER_USERNAME));
         if (session != null) {
             session.invalidate();
         }

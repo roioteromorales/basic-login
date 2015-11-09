@@ -7,6 +7,7 @@ import java.util.Set;
 
 import static com.roisoftstudio.Constants.LOGIN_PAGE;
 import static com.roisoftstudio.Constants.PARAMETER_USERNAME;
+import static com.roisoftstudio.Constants.UNAUTHORIZED_ROLE_PAGE;
 
 public class SessionValidator {
 
@@ -14,7 +15,8 @@ public class SessionValidator {
         if (userIsNotLogged(session)){
             response.sendRedirect(LOGIN_PAGE);
         }else{
-            new RoleSessionValidator().validateSessionRole(session,response,allowedRoles);
+            if (new RoleSessionValidator().isRoleInvalid(session,allowedRoles))
+                response.sendRedirect(UNAUTHORIZED_ROLE_PAGE);
         }
     }
 

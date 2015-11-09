@@ -30,23 +30,22 @@ public class LoginServlet extends HttpServlet {
         String username = request.getParameter(PARAMETER_USERNAME);
         String password = request.getParameter(PARAMETER_PASSWORD);
 
-        if(username == null && password == null){
-            RequestDispatcher rd = request.getRequestDispatcher(LOGIN_PAGE);
-            response.getWriter().println(NO_CREDENTIALS_ERROR_MSG);
-            rd.include(request, response);
-        }else{
-            User user = new User(username, password);
+        User user = new User(username, password);
 
-            if (credentialsDao.authenticate(user)) {
-                createSession(request, user);
-                createCookie(response, username);
-                response.sendRedirect(MAIN_PAGE);
-            } else {
-                RequestDispatcher rd = request.getRequestDispatcher(LOGIN_PAGE);
-                response.getWriter().println(INVALID_CREDENTIALS_ERROR);
-                rd.include(request, response);
-            }
+        if (credentialsDao.authenticate(user)) {
+            createSession(request, user);
+            createCookie(response, username);
+            response.sendRedirect(MAIN_PAGE);
+        } else {
+            showInvalidCredentialsError(request, response);
         }
+
+    }
+
+    private void showInvalidCredentialsError(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        RequestDispatcher rd = request.getRequestDispatcher(LOGIN_PAGE);
+        response.getWriter().println(INVALID_CREDENTIALS_ERROR);
+        rd.include(request, response);
     }
 
     private void createCookie(HttpServletResponse response, String user) {

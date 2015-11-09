@@ -99,23 +99,4 @@ public class LoginServletTest {
         String servletOutput = FileUtils.readFileToString(new File(OUTPUT_FILE), "UTF-8");
         assertThat(servletOutput, is(INVALID_CREDENTIALS_ERROR + EXTRA_CHARACTERS_ADDED));
     }
-    @Test
-    public void servletShouldPrintNoCredentialsError_whenUserInputsNoCredentials() throws Exception {
-        HttpServletRequest requestMock = prepareRequestMock(null, null);
-        RequestDispatcher rdMock = mock(RequestDispatcher.class);
-        when(requestMock.getRequestDispatcher(LOGIN_PAGE)).thenReturn(rdMock);
-
-        PrintWriter writer = new PrintWriter(OUTPUT_FILE);
-        HttpServletResponse responseMock = mock(HttpServletResponse.class);
-        when(responseMock.getWriter()).thenReturn(writer);
-
-        new LoginServlet().doPost(requestMock, responseMock);
-
-        verifyParameters(requestMock);
-        writer.flush();
-        String servletOutput = FileUtils.readFileToString(new File(OUTPUT_FILE), "UTF-8");
-        assertThat(servletOutput, is(NO_CREDENTIALS_ERROR_MSG + EXTRA_CHARACTERS_ADDED));
-    }
-
-
 }

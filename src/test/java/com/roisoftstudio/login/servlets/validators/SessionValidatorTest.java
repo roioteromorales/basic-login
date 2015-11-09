@@ -1,14 +1,13 @@
-package com.roisoftstudio.login.servlets;
+package com.roisoftstudio.login.servlets.validators;
 
-import com.roisoftstudio.login.servlets.validators.SessionValidator;
 import org.junit.Before;
 import org.junit.Test;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.HashSet;
 
-import static com.roisoftstudio.Constants.LOGIN_PAGE;
-import static com.roisoftstudio.Constants.PARAMETER_USERNAME;
+import static com.roisoftstudio.Constants.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNull.nullValue;
@@ -32,13 +31,25 @@ public class SessionValidatorTest {
 
         verify(responseMock, atLeast(1)).sendRedirect(LOGIN_PAGE);
     }
+    @Test
+    public void validatorShouldRedirect_whenSessionIsValidButRoleIsInvalid() throws Exception {
+        HttpSession sessionMock = mock(HttpSession.class);
+        HttpServletResponse responseMock = mock(HttpServletResponse.class);
+        when(sessionMock.getAttribute(PARAMETER_USERNAME)).thenReturn("username");
 
+        HashSet<String> allowedRoles = new HashSet<>();
+        allowedRoles.add("RandomRole");
+
+        SessionValidator.validateSession(sessionMock, responseMock, allowedRoles);
+
+        verify(responseMock, atLeast(1)).sendRedirect(UNAUTHORIZED_ROLE_PAGE);
+    }
     @Test
     public void getSessionUsername_returnsTheSessionUsernameValue() throws Exception {
         HttpSession sessionMock = mock(HttpSession.class);
-        when(sessionMock.getAttribute(PARAMETER_USERNAME)).thenReturn("cookieUsername");
+        when(sessionMock.getAttribute(PARAMETER_USERNAME)).thenReturn("username");
 
-        assertThat( SessionValidator.getSessionUsername(sessionMock), is("cookieUsername"));
+        assertThat( SessionValidator.getSessionUsername(sessionMock), is("username"));
     }
 
     @Test
