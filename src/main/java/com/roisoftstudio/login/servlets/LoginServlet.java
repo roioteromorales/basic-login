@@ -21,6 +21,11 @@ public class LoginServlet extends HttpServlet {
         credentialsDao = new InMemoryDBCredentialsDao(new InMemoryDB());
     }
 
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.sendRedirect(LOGIN_PAGE);
+    }
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter(PARAMETER_USERNAME);
         String password = request.getParameter(PARAMETER_PASSWORD);
@@ -35,10 +40,10 @@ public class LoginServlet extends HttpServlet {
             if (credentialsDao.authenticate(user)) {
                 createSession(request, user);
                 createCookie(response, username);
-                response.sendRedirect("MainPage.jsp");
+                response.sendRedirect(MAIN_PAGE);
             } else {
                 RequestDispatcher rd = request.getRequestDispatcher(LOGIN_PAGE);
-                response.getWriter().println(INVALID_CREDENTIALS_ERROR_MSG);
+                response.getWriter().println(INVALID_CREDENTIALS_ERROR);
                 rd.include(request, response);
             }
         }

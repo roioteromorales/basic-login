@@ -14,7 +14,7 @@ import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNull.nullValue;
 import static org.mockito.Mockito.*;
 
-public class userSessionValidatorTest {
+public class SessionValidatorTest {
 
     private SessionValidator SessionValidator;
 

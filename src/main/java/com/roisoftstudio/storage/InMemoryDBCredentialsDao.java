@@ -21,7 +21,7 @@ public class InMemoryDBCredentialsDao implements CredentialsDao {
     public void addUser(User user) throws DaoException {
         try {
             inMemoryDB.addUser(user.getUsername(), user.getPassword());
-            inMemoryDB.addRoles(user.getUsername(), user.getRoles());
+            inMemoryDB.addRoles(user.getUsername(), user.getRoles().stream().toArray(String[]::new));
         } catch (DuplicatedKeyException e) {
             LOGGER.error("Username already exist in DB", e);
             throw new DaoException(e);
@@ -30,7 +30,7 @@ public class InMemoryDBCredentialsDao implements CredentialsDao {
 
     @Override
     public void addRole(User user, String role) {
-        inMemoryDB.addRole(user.getUsername(), role);
+        inMemoryDB.addRoles(user.getUsername(), role);
     }
 
     @Override

@@ -14,7 +14,7 @@
 
         <%@include file="/pages/htmlTemplates/pagesMenu.html" %>
 
-        <div class="isa_success">
+        <div class="isa_success" id="successBox">
              <i class="fa fa-check"></i>
              Hola  <%=username %>.
         </div>

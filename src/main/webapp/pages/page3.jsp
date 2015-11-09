@@ -15,9 +15,10 @@
 
         <%@include file="/pages/htmlTemplates/pagesMenu.html" %>
 
-        <div class="isa_info">
-            <i class="fa fa-info-circle"></i>
-                This is page 3, role protected<br>
+        <%@ page import="com.roisoftstudio.Constants" %>
+        <div class="isa_success" id="successBox">
+             <i class="fa fa-check"></i>
+                <%=Constants.ROLE_PROTECTED_MSG %><br>
                 Hi <%=username %>, your role is <%=userRoles %><br>
                 Allowed Roles:  <%=allowedRoles %>.<br>
         </div>

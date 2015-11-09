@@ -100,7 +100,7 @@
                     <port>9090</port>
                     <path>/</path>
                     <useTestClasspath>true</useTestClasspath>
-                    <skip>${skipIT}</skip>
+
                 </configuration>
 
                 <executions>
@@ -111,17 +111,20 @@
                             <goal>run-war-only</goal>
                         </goals>
                         <configuration>
+                            <skip>${skipIT}</skip>
                             <port>9090</port>
                             <fork>true</fork>
                         </configuration>
                     </execution>
-
                     <execution>
                         <id>stop-tomcat</id>
                         <phase>post-integration-test</phase>
                         <goals>
                             <goal>shutdown</goal>
                         </goals>
+                        <configuration>
+                            <skip>${skipIT}</skip>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>

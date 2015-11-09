@@ -8,10 +8,11 @@
     </head>
     <body>
            <%@include file="/pages/htmlTemplates/pagesMenu.html" %>
+        <%@ page import="com.roisoftstudio.Constants" %>
 
-            <div class="isa_error">
+            <div class="isa_error" id="errorBox">
                <i class="fa fa-times-circle"></i>
-               You dont have access to this page
+               <%=Constants.UNAUTHORIZED_ERROR_MESSAGE %>
             </div>
 
         <div class="error"></div>

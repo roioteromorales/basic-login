@@ -28,6 +28,16 @@ public class LoginServletTest {
     public static final String PASSWORD = "password";
 
     @Test
+    public void servletDoGet_shouldRedirectToLoginPage() throws Exception {
+        HttpServletRequest requestMock =  mock(HttpServletRequest.class);
+        HttpServletResponse responseMock = mock(HttpServletResponse.class);
+
+        new LoginServlet().doGet(requestMock, responseMock);
+
+        verify(responseMock, atLeast(1)).sendRedirect(LOGIN_PAGE);
+    }
+
+    @Test
     public void servletShouldCreateCookie_whenSuccessfulLogin() throws Exception {
         HttpServletRequest requestMock = prepareRequestMock(ADMIN, PASSWORD);
 
@@ -87,7 +97,7 @@ public class LoginServletTest {
         verifyParameters(requestMock);
         writer.flush();
         String servletOutput = FileUtils.readFileToString(new File(OUTPUT_FILE), "UTF-8");
-        assertThat(servletOutput, is(INVALID_CREDENTIALS_ERROR_MSG + EXTRA_CHARACTERS_ADDED));
+        assertThat(servletOutput, is(INVALID_CREDENTIALS_ERROR + EXTRA_CHARACTERS_ADDED));
     }
     @Test
     public void servletShouldPrintNoCredentialsError_whenUserInputsNoCredentials() throws Exception {
