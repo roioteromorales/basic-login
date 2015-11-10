@@ -11,9 +11,7 @@ import static com.roisoftstudio.Constants.*;
 @WebFilter(urlPatterns = {"/*"})
 public class AuthenticationFilter implements Filter {
 
-    private ServletContext context;
     private RoleChecker roleChecker = new RoleChecker();
-
 
     @Override
     public void init(FilterConfig fConfig) throws ServletException {
@@ -26,8 +24,8 @@ public class AuthenticationFilter implements Filter {
         final HttpServletResponse response = (HttpServletResponse) res;
 
         HttpSession session = request.getSession(false);
-
         String requestURI = request.getRequestURI();
+        String contextPath = request.getContextPath() != null ? request.getContextPath() : "";
 
         if (isProtected(request)) {
             if (hasSession(session)) {
@@ -42,7 +40,7 @@ public class AuthenticationFilter implements Filter {
                     response.sendRedirect(MAIN_PAGE);
                 }
             } else {
-                response.sendRedirect(LOGIN_PAGE);
+                response.sendRedirect(FOLDER_UP + LOGIN_PAGE);
             }
         } else if (isLoginPath(request) || isResource(requestURI)) {
             chain.doFilter(request, response);
@@ -52,7 +50,7 @@ public class AuthenticationFilter implements Filter {
     }
 
     private boolean isDisplayingUnauthorizedPage(String requestURI) {
-        return UNAUTHORIZED_ROLE_PAGE.equals(requestURI);
+        return requestURI.endsWith(UNAUTHORIZED_ROLE_PAGE);
     }
 
     @Override
@@ -81,8 +79,8 @@ public class AuthenticationFilter implements Filter {
 
     private boolean isLoginPath(HttpServletRequest request) {
         String requestURI = request.getRequestURI();
-        return requestURI.equals(LOGIN_PAGE) ||
-                requestURI.equals(LOGIN_SERVLET_PATH) ||
-                requestURI.equals(LOGOUT_SERVLET_PATH);
+        return requestURI.endsWith(LOGIN_PAGE) ||
+                requestURI.endsWith(LOGIN_SERVLET_PATH) ||
+                requestURI.endsWith(LOGOUT_SERVLET_PATH);
     }
 }

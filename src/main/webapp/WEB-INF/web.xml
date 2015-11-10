@@ -10,7 +10,7 @@
     </description>
 
     <welcome-file-list>
-        <welcome-file>login/login.html</welcome-file>
+        <welcome-file>login.html</welcome-file>
     </welcome-file-list>
 
     <servlet>

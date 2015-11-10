@@ -49,12 +49,13 @@ public class AuthenticationFilterTest {
         authenticationFilter.doFilter(requestMock, responseMock, filterChainMock);
         verify(filterChainMock, times(1)).doFilter(requestMock, responseMock);
     }
+
     @Test
     public void filterShouldRedirectToMainPage_whenIsProtectedAddressButNotLogged() throws Exception {
         when(requestMock.getRequestURI()).thenReturn(MAIN_PAGE);
 
         authenticationFilter.doFilter(requestMock, responseMock, filterChainMock);
-        verify(responseMock, times(1)).sendRedirect(LOGIN_PAGE);
+        verify(responseMock, times(1)).sendRedirect(FOLDER_UP + LOGIN_PAGE);
     }
 
     @Test
@@ -68,7 +69,7 @@ public class AuthenticationFilterTest {
 
     @Test
     public void filterShouldRedirectToUnauthorizedPage_whenIsLoggedButHasWrongRole() throws Exception {
-        when(requestMock.getRequestURI()).thenReturn("/"+ Constants.PROTECTED_PATH + "/" + "page1.jsp");
+        when(requestMock.getRequestURI()).thenReturn("/" + Constants.PROTECTED_PATH + "/" + "page1.jsp");
         when(requestMock.getSession(false)).thenReturn(sessionMock);
         when(sessionMock.getAttribute(PARAMETER_ROLES)).thenReturn(new HashSet<>());
 
@@ -78,7 +79,7 @@ public class AuthenticationFilterTest {
 
     @Test
     public void filterShouldIgnoreFilter_whenIsLoggedAndHasGoodRole() throws Exception {
-        when(requestMock.getRequestURI()).thenReturn("/"+ Constants.PROTECTED_PATH + "/" + "page1.jsp");
+        when(requestMock.getRequestURI()).thenReturn("/" + Constants.PROTECTED_PATH + "/" + "page1.jsp");
         when(requestMock.getSession(false)).thenReturn(sessionMock);
         Set<String> sessionRoles = new HashSet<>(Arrays.asList(RolesMap.ROLE_1));
         when(sessionMock.getAttribute(PARAMETER_ROLES)).thenReturn(sessionRoles);
