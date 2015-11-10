@@ -1,4 +1,6 @@
 # BasicLoginServer
+You need to have Firefox installed in order to run the Selenium tests.
+
 Maven Commands:
 --------------------------------------
 Clean Install without Integration Tests:
