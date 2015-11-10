@@ -1,5 +1,6 @@
 # BasicLoginServer
 You need to have Firefox installed in order to run the Selenium tests.
+Binary .war ready to deploy is in the /bin/ folder.
 
 Maven Commands:
 --------------------------------------
