@@ -3,20 +3,20 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
         <title>Unauthorized Role</title>
-        <style><%@include file="/protectedPages/css/dialogs.css" %></style>
+        <style><%@include file="/css/dialogs.css" %></style>
 
     </head>
     <body>
-           <%@include file="/protectedPages/htmlTemplates/pagesMenu.html" %>
-        <%@ page import="com.roisoftstudio.Constants" %>
+           <%@include file="/protectedPath/htmlTemplates/pagesMenu.html" %>
 
+            <%@ page import="com.roisoftstudio.Constants" %>
             <div class="isa_error" id="errorBox">
                <i class="fa fa-times-circle"></i>
                <%=Constants.UNAUTHORIZED_ERROR_MESSAGE %>
             </div>
 
         <div class="error"></div>
-        <%@include file="/protectedPages/htmlTemplates/sessionButtons.html" %>
+        <%@include file="/protectedPath/htmlTemplates/sessionButtons.html" %>
 
     </body>
 </html>

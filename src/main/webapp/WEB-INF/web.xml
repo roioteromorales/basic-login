@@ -10,15 +10,21 @@
     </description>
 
     <welcome-file-list>
-        <welcome-file>unprotectedPages/login.html</welcome-file>
+        <welcome-file>login/login.html</welcome-file>
     </welcome-file-list>
 
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>com.roisoftstudio.login.servlets.LoginServlet</servlet-class>
     </servlet>
+
     <servlet>
         <servlet-name>LogoutServlet</servlet-name>
         <servlet-class>com.roisoftstudio.login.servlets.LogoutServlet</servlet-class>
     </servlet>
+
+    <filter>
+        <filter-name>AuthenticationFilter</filter-name>
+        <filter-class>com.roisoftstudio.login.servlets.filter.AuthenticationFilter</filter-class>
+    </filter>
 </web-app>     

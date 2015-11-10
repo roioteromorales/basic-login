@@ -39,7 +39,6 @@ public class LoginServlet extends HttpServlet {
         } else {
             showInvalidCredentialsError(request, response);
         }
-
     }
 
     private void showInvalidCredentialsError(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {

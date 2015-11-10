@@ -15,7 +15,7 @@ import java.util.HashSet;
 import static com.roisoftstudio.Constants.*;
 import static com.roisoftstudio.login.servlets.ServletMocksHelper.prepareRequestMock;
 import static com.roisoftstudio.login.servlets.ServletMocksHelper.verifyParameters;
-import static com.roisoftstudio.login.users.Roles.*;
+import static com.roisoftstudio.login.users.RolesMap.*;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.Mockito.*;

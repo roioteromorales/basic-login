@@ -8,14 +8,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-import static com.roisoftstudio.Constants.INVALID_CREDENTIALS_ERROR_MESSAGE;
-import static com.roisoftstudio.Constants.LOGIN_PAGE;
-import static com.roisoftstudio.Constants.MAIN_PAGE;
+import static com.roisoftstudio.Constants.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 
 public class LoginScenariosIT {
 
+    public static final String HTTP_LOCALHOST_9090 = "http://localhost:9090/";
     private WebDriver driver;
     private SeleniumHelper seleniumHelper;
 
@@ -55,11 +54,11 @@ public class LoginScenariosIT {
     }
 
     @Test
-    public void userCannotAccessLoginProtectedPages_withoutLoginIn() throws Exception {
-        checkProtectedPage("http://localhost:9090/protectedPages/MainPage.jsp");
-        checkProtectedPage("http://localhost:9090/protectedPages/page1.jsp");
-        checkProtectedPage("http://localhost:9090/protectedPages/page2.jsp");
-        checkProtectedPage("http://localhost:9090/protectedPages/page3.jsp");
+    public void userCannotAccessLoginProtectedPath_withoutLoginIn() throws Exception {
+        checkProtectedPage(HTTP_LOCALHOST_9090 + PROTECTED_PATH + "/MainPage.jsp");
+        checkProtectedPage(HTTP_LOCALHOST_9090 + PROTECTED_PATH + "/page1.jsp");
+        checkProtectedPage(HTTP_LOCALHOST_9090 + PROTECTED_PATH + "/page2.jsp");
+        checkProtectedPage(HTTP_LOCALHOST_9090 + PROTECTED_PATH + "/page3.jsp");
     }
 
     private void checkProtectedPage(String protectedPage) {

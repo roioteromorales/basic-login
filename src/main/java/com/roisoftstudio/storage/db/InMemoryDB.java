@@ -4,7 +4,7 @@ import com.roisoftstudio.login.users.User;
 
 import java.util.*;
 
-import static com.roisoftstudio.login.users.Roles.*;
+import static com.roisoftstudio.login.users.RolesMap.*;
 
 public class InMemoryDB {
 
