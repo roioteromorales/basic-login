@@ -55,10 +55,10 @@ public class LoginScenariosIT {
 
     @Test
     public void userCannotAccessLoginProtectedPath_withoutLoginIn() throws Exception {
-        checkProtectedPage(HTTP_LOCALHOST_9090 + PROTECTED_PATH + "/MainPage.jsp");
-        checkProtectedPage(HTTP_LOCALHOST_9090 + PROTECTED_PATH + "/page1.jsp");
-        checkProtectedPage(HTTP_LOCALHOST_9090 + PROTECTED_PATH + "/page2.jsp");
-        checkProtectedPage(HTTP_LOCALHOST_9090 + PROTECTED_PATH + "/page3.jsp");
+        checkProtectedPage(HTTP_LOCALHOST_9090 + PROTECTED_PATH + "MainPage.jsp");
+        checkProtectedPage(HTTP_LOCALHOST_9090 + PROTECTED_PATH + "page1.jsp");
+        checkProtectedPage(HTTP_LOCALHOST_9090 + PROTECTED_PATH + "page2.jsp");
+        checkProtectedPage(HTTP_LOCALHOST_9090 + PROTECTED_PATH + "page3.jsp");
     }
 
     private void checkProtectedPage(String protectedPage) {

@@ -25,7 +25,8 @@ public class AuthenticationFilter implements Filter {
 
         HttpSession session = request.getSession(false);
         String requestURI = request.getRequestURI();
-        String contextPath = request.getContextPath() != null ? request.getContextPath() : "";
+        String contextPath = request.getContextPath() != null ? request.getContextPath() + "/" : "";
+
 
         if (isProtected(request)) {
             if (hasSession(session)) {
@@ -42,11 +43,12 @@ public class AuthenticationFilter implements Filter {
             } else {
                 response.sendRedirect(FOLDER_UP + LOGIN_PAGE);
             }
-        } else if (isLoginPath(request) || isResource(requestURI)) {
+        } else if (isLoginPath(requestURI) || isResource(requestURI)) {
             chain.doFilter(request, response);
         } else {
-            response.sendRedirect(LOGIN_PAGE);
+            response.sendRedirect(contextPath + LOGIN_PAGE);
         }
+
     }
 
     private boolean isDisplayingUnauthorizedPage(String requestURI) {
@@ -64,8 +66,10 @@ public class AuthenticationFilter implements Filter {
                 path.endsWith(".css"));
     }
 
-    private boolean isResource(String path) {
-        return (path.matches("^/css/.*$"));
+    private boolean isResource(String requestUri) {
+        return requestUri.toLowerCase().endsWith(".css") ||
+                requestUri.toLowerCase().endsWith(".jpg") ||
+                requestUri.toLowerCase().endsWith(".png");
     }
 
     private boolean hasSession(HttpSession session) {
@@ -77,8 +81,7 @@ public class AuthenticationFilter implements Filter {
         return rootPath != null && rootPath.contains(PROTECTED_PATH);
     }
 
-    private boolean isLoginPath(HttpServletRequest request) {
-        String requestURI = request.getRequestURI();
+    private boolean isLoginPath(String requestURI) {
         return requestURI.endsWith(LOGIN_PAGE) ||
                 requestURI.endsWith(LOGIN_SERVLET_PATH) ||
                 requestURI.endsWith(LOGOUT_SERVLET_PATH);

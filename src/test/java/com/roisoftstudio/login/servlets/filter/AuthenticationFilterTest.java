@@ -1,7 +1,6 @@
 package com.roisoftstudio.login.servlets.filter;
 
 
-import com.roisoftstudio.Constants;
 import com.roisoftstudio.login.users.RolesMap;
 import org.junit.Before;
 import org.junit.Test;
@@ -52,7 +51,7 @@ public class AuthenticationFilterTest {
 
     @Test
     public void filterShouldRedirectToMainPage_whenIsProtectedAddressButNotLogged() throws Exception {
-        when(requestMock.getRequestURI()).thenReturn(MAIN_PAGE);
+        when(requestMock.getRequestURI()).thenReturn(PROTECTED_PATH + MAIN_PAGE);
 
         authenticationFilter.doFilter(requestMock, responseMock, filterChainMock);
         verify(responseMock, times(1)).sendRedirect(FOLDER_UP + LOGIN_PAGE);
@@ -60,7 +59,7 @@ public class AuthenticationFilterTest {
 
     @Test
     public void filterShouldRedirectToMainPage_whenIsLoggedButWrongAddress() throws Exception {
-        when(requestMock.getRequestURI()).thenReturn(MAIN_PAGE + "fasdfas");
+        when(requestMock.getRequestURI()).thenReturn(PROTECTED_PATH  + MAIN_PAGE + "fasdfas");
         when(requestMock.getSession(false)).thenReturn(sessionMock);
 
         authenticationFilter.doFilter(requestMock, responseMock, filterChainMock);
@@ -69,7 +68,7 @@ public class AuthenticationFilterTest {
 
     @Test
     public void filterShouldRedirectToUnauthorizedPage_whenIsLoggedButHasWrongRole() throws Exception {
-        when(requestMock.getRequestURI()).thenReturn("/" + Constants.PROTECTED_PATH + "/" + "page1.jsp");
+        when(requestMock.getRequestURI()).thenReturn("/" + PROTECTED_PATH  + "page1.jsp");
         when(requestMock.getSession(false)).thenReturn(sessionMock);
         when(sessionMock.getAttribute(PARAMETER_ROLES)).thenReturn(new HashSet<>());
 
@@ -79,7 +78,7 @@ public class AuthenticationFilterTest {
 
     @Test
     public void filterShouldIgnoreFilter_whenIsLoggedAndHasGoodRole() throws Exception {
-        when(requestMock.getRequestURI()).thenReturn("/" + Constants.PROTECTED_PATH + "/" + "page1.jsp");
+        when(requestMock.getRequestURI()).thenReturn("/" + PROTECTED_PATH + "page1.jsp");
         when(requestMock.getSession(false)).thenReturn(sessionMock);
         Set<String> sessionRoles = new HashSet<>(Arrays.asList(RolesMap.ROLE_1));
         when(sessionMock.getAttribute(PARAMETER_ROLES)).thenReturn(sessionRoles);

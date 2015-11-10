@@ -5,7 +5,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
         <title>Login Success Page</title>
-        <style><%@include file="/css/dialogs.css" %></style>
+        <style><%@include file="../css/dialogs.css" %></style>
     </head>
     <body>
         <%@include file="/protectedPath/htmlTemplates/pagesMenu.html" %>

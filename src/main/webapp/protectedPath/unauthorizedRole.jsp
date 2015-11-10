@@ -3,7 +3,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
         <title>Unauthorized Role</title>
-        <style><%@include file="/css/dialogs.css" %></style>
+        <style><%@include file="../css/dialogs.css" %></style>
 
     </head>
     <body>

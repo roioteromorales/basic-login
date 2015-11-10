@@ -28,7 +28,7 @@ public class LoginServletTest {
 
     @Test
     public void servletDoGet_shouldRedirectToLoginPage() throws Exception {
-        HttpServletRequest requestMock =  mock(HttpServletRequest.class);
+        HttpServletRequest requestMock = mock(HttpServletRequest.class);
         HttpServletResponse responseMock = mock(HttpServletResponse.class);
 
         new LoginServlet().doGet(requestMock, responseMock);
@@ -78,7 +78,7 @@ public class LoginServletTest {
         new LoginServlet().doPost(requestMock, responseMock);
 
         verifyParameters(requestMock);
-        verify(responseMock, atLeast(1)).sendRedirect(MAIN_PAGE);
+        verify(responseMock, atLeast(1)).sendRedirect(PROTECTED_PATH + MAIN_PAGE);
     }
 
     @Test

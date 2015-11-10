@@ -35,7 +35,7 @@ public class LoginServlet extends HttpServlet {
         if (credentialsDao.authenticate(user)) {
             createSession(request, user);
             createCookie(response, username);
-            response.sendRedirect(MAIN_PAGE);
+            response.sendRedirect(PROTECTED_PATH + MAIN_PAGE);
         } else {
             showInvalidCredentialsError(request, response);
         }
