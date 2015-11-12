@@ -7,6 +7,13 @@ Available instance online at: (might not be up since is a free server online)
 
 http://thawing-beyond-8990.herokuapp.com/login.html 
 
+Ready to use roles:
+
+   * user1 pass1    - PAG_1
+   * user2 pass2    - PAG_2
+   * user3 pass3    - PAG_3
+   * admin password - all roles
+
 Maven Commands:
 --------------------------------------
 Clean Install without Integration Tests:
