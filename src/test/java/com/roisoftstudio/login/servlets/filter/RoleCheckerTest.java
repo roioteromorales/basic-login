@@ -6,8 +6,8 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.HashSet;
 
-import static com.roisoftstudio.login.users.RolesMap.ROLE_1;
-import static com.roisoftstudio.login.users.RolesMap.ROLE_2;
+import static com.roisoftstudio.storage.db.InMemoryRolesDB.ROLE_1;
+import static com.roisoftstudio.storage.db.InMemoryRolesDB.ROLE_2;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 

@@ -4,14 +4,14 @@ import com.roisoftstudio.login.users.User;
 
 import java.util.*;
 
-import static com.roisoftstudio.login.users.RolesMap.*;
+import static com.roisoftstudio.storage.db.InMemoryRolesDB.*;
 
-public class InMemoryDB {
+public class InMemoryCredentialsDB {
 
     Map<String, String> credentialsDB = new HashMap<>();
     Map<String, Set<String>> rolesDB = new HashMap<>();
 
-    public InMemoryDB() {
+    public InMemoryCredentialsDB() {
         addInitialUser("admin", "password", ROLE_1, ROLE_2, ROLE_3);
         addInitialUser("user1", "pass1", ROLE_1);
         addInitialUser("user2", "pass2", ROLE_2);

@@ -1,16 +1,17 @@
 package com.roisoftstudio.login.servlets.filter;
 
-import com.roisoftstudio.login.users.RolesMap;
+import com.roisoftstudio.storage.InMemoryRolesDao;
+import com.roisoftstudio.storage.RolesDao;
+import com.roisoftstudio.storage.db.InMemoryRolesDB;
 
 import java.util.Set;
 
 public class RoleChecker {
-
-    private final RolesMap rolesMap = new RolesMap();
+    private final RolesDao rolesDao = new InMemoryRolesDao(new InMemoryRolesDB());
 
     public boolean userHasValidRole(Set<String> sessionRoles, String requestURI) {
         for (String sessionRole : sessionRoles) {
-            Set<String> allowedFilesForRole = rolesMap.roleToFilesMap.get(sessionRole);
+            Set<String> allowedFilesForRole = rolesDao.getPages(sessionRole);
             if (allowedFilesForRole.contains(getPage(requestURI))) {
                 return true;
             }

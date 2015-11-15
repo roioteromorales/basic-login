@@ -1,7 +1,7 @@
 package com.roisoftstudio.login.servlets.filter;
 
 
-import com.roisoftstudio.login.users.RolesMap;
+import com.roisoftstudio.storage.db.InMemoryRolesDB;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -55,7 +55,7 @@ public class AuthenticationFilterTest {
     public void filterShouldIgnoreFilter_whenIsLoggedAndHasGoodRole() throws Exception {
         when(requestMock.getRequestURI()).thenReturn("/" + PROTECTED_PATH + "page1.jsp");
         when(requestMock.getSession(false)).thenReturn(sessionMock);
-        Set<String> sessionRoles = new HashSet<>(Arrays.asList(RolesMap.ROLE_1));
+        Set<String> sessionRoles = new HashSet<>(Arrays.asList(InMemoryRolesDB.ROLE_1));
         when(sessionMock.getAttribute(PARAMETER_ROLES)).thenReturn(sessionRoles);
 
         authenticationFilter.doFilter(requestMock, responseMock, filterChainMock);

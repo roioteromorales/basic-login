@@ -10,6 +10,5 @@ public interface CredentialsDao {
     boolean userExist(User user);
     boolean authenticate(User user);
     boolean hasRole(User user, String role);
-
     Set<String> getRoles(User user);
 }

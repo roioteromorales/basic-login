@@ -1,23 +1,24 @@
 package com.roisoftstudio.storage;
 
 import com.roisoftstudio.login.users.User;
-import com.roisoftstudio.storage.db.InMemoryDB;
+import com.roisoftstudio.storage.db.InMemoryCredentialsDB;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.Arrays;
+import java.util.HashSet;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 
-public class InMemoryDBCredentialsDaoTest {
+public class InMemoryCredentialsDaoTest {
 
-    private InMemoryDB inMemoryDB;
-    private InMemoryDBCredentialsDao credentialsDao;
+    private InMemoryCredentialsDao credentialsDao;
     private User testUser;
 
     @Before
     public void setUp() throws Exception {
-        inMemoryDB = new InMemoryDB();
-        credentialsDao = new InMemoryDBCredentialsDao(inMemoryDB);
+        credentialsDao = new InMemoryCredentialsDao(new InMemoryCredentialsDB());
         testUser = new User("testUser", "testPassword");
     }
 
@@ -55,5 +56,12 @@ public class InMemoryDBCredentialsDaoTest {
         credentialsDao.addRoles(testUser, "newRole");
 
         assertThat(credentialsDao.hasRole(testUser, "newRole"), is(true));
+    }
+
+    @Test
+    public void getRoles_shouldRetrieveAllRolesForAnUser() throws Exception {
+        credentialsDao.addRoles(testUser, "role1", "role2");
+
+        assertThat(credentialsDao.getRoles(testUser), is(new HashSet<>(Arrays.asList("role2","role1"))));
     }
 }

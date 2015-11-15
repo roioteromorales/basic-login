@@ -3,8 +3,8 @@ package com.roisoftstudio.login;
 
 import com.roisoftstudio.login.users.User;
 import com.roisoftstudio.storage.CredentialsDao;
-import com.roisoftstudio.storage.InMemoryDBCredentialsDao;
-import com.roisoftstudio.storage.db.InMemoryDB;
+import com.roisoftstudio.storage.InMemoryCredentialsDao;
+import com.roisoftstudio.storage.db.InMemoryCredentialsDB;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -18,7 +18,7 @@ public class SessionManager {
     private final CredentialsDao credentialsDao;
 
     public SessionManager() {
-        credentialsDao = new InMemoryDBCredentialsDao(new InMemoryDB());
+        credentialsDao = new InMemoryCredentialsDao(new InMemoryCredentialsDB());
     }
 
     public boolean login(String username, String password) {
