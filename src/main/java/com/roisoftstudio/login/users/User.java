@@ -15,8 +15,8 @@ public class User {
         Collections.addAll(this.roles, roles);
     }
 
-    public void addRole(String role){
-        roles.add(role);
+    public void addRoles(String... roles){
+        Collections.addAll(this.roles, roles);
     }
 
     public String getUsername() {

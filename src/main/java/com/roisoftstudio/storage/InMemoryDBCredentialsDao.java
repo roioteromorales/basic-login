@@ -29,8 +29,8 @@ public class InMemoryDBCredentialsDao implements CredentialsDao {
     }
 
     @Override
-    public void addRole(User user, String role) {
-        inMemoryDB.addRoles(user.getUsername(), role);
+    public void addRoles(User user, String... roles) {
+        inMemoryDB.addRoles(user.getUsername(), roles);
     }
 
     @Override
@@ -40,12 +40,13 @@ public class InMemoryDBCredentialsDao implements CredentialsDao {
 
     @Override
     public boolean authenticate(User user) {
-        return inMemoryDB.contains(user.getUsername()) && inMemoryDB.getPassword(user.getUsername()).equals(user.getPassword());
+        return inMemoryDB.contains(user.getUsername()) &&
+                inMemoryDB.getPassword(user.getUsername()).equals(user.getPassword());
     }
 
     @Override
     public boolean hasRole(User user, String role) {
-        return inMemoryDB.hasRole(user,role);
+        return inMemoryDB.hasRole(user, role);
     }
 
     @Override

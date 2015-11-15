@@ -34,36 +34,11 @@ public class AuthenticationFilterTest {
     }
 
     @Test
-    public void filterShouldRedirectToLoginPage_whenIsNotLoginPageAndIsNotProtected() throws Exception {
-        when(requestMock.getRequestURI()).thenReturn("fadsfasd");
-
-        authenticationFilter.doFilter(requestMock, responseMock, filterChainMock);
-        verify(responseMock, times(1)).sendRedirect(LOGIN_PAGE);
-    }
-
-    @Test
-    public void filterShouldIgnoreFilter_whenRequestUriIsLogin() throws Exception {
-        when(requestMock.getRequestURI()).thenReturn(LOGIN_PAGE);
-
-        authenticationFilter.doFilter(requestMock, responseMock, filterChainMock);
-        verify(filterChainMock, times(1)).doFilter(requestMock, responseMock);
-    }
-
-    @Test
     public void filterShouldRedirectToMainPage_whenIsProtectedAddressButNotLogged() throws Exception {
         when(requestMock.getRequestURI()).thenReturn(PROTECTED_PATH + MAIN_PAGE);
 
         authenticationFilter.doFilter(requestMock, responseMock, filterChainMock);
         verify(responseMock, times(1)).sendRedirect(FOLDER_UP + LOGIN_PAGE);
-    }
-
-    @Test
-    public void filterShouldRedirectToMainPage_whenIsLoggedButWrongAddress() throws Exception {
-        when(requestMock.getRequestURI()).thenReturn(PROTECTED_PATH  + MAIN_PAGE + "fasdfas");
-        when(requestMock.getSession(false)).thenReturn(sessionMock);
-
-        authenticationFilter.doFilter(requestMock, responseMock, filterChainMock);
-        verify(responseMock, times(1)).sendRedirect(MAIN_PAGE);
     }
 
     @Test

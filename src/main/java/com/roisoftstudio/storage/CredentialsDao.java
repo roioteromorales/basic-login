@@ -6,7 +6,7 @@ import java.util.Set;
 
 public interface CredentialsDao {
     void addUser(User user) throws DaoException;
-    void addRole(User user, String role);
+    void addRoles(User user, String... roles);
     boolean userExist(User user);
     boolean authenticate(User user);
     boolean hasRole(User user, String role);

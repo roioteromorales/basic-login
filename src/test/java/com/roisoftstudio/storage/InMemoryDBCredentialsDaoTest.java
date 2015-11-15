@@ -30,7 +30,7 @@ public class InMemoryDBCredentialsDaoTest {
 
     @Test
     public void userRolesAreAdded_whenCreatingUser() throws Exception {
-        testUser.addRole("ROLE1");
+        testUser.addRoles("ROLE1");
         credentialsDao.addUser(testUser);
 
         assertThat(credentialsDao.userExist(testUser), is(true));
@@ -52,7 +52,7 @@ public class InMemoryDBCredentialsDaoTest {
 
     @Test
     public void rolesCanBeAddedToExistingUsers() throws Exception {
-        credentialsDao.addRole(testUser, "newRole");
+        credentialsDao.addRoles(testUser, "newRole");
 
         assertThat(credentialsDao.hasRole(testUser, "newRole"), is(true));
     }

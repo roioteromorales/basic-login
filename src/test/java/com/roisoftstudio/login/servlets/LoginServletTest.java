@@ -7,15 +7,12 @@ import org.junit.Test;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.PrintWriter;
-import java.util.HashSet;
 
 import static com.roisoftstudio.Constants.*;
 import static com.roisoftstudio.login.servlets.ServletMocksHelper.prepareRequestMock;
 import static com.roisoftstudio.login.servlets.ServletMocksHelper.verifyParameters;
-import static com.roisoftstudio.login.users.RolesMap.*;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.Mockito.*;
@@ -35,39 +32,6 @@ public class LoginServletTest {
 
         verify(responseMock, atLeast(1)).sendRedirect(LOGIN_PAGE);
     }
-
-    @Test
-    public void servletShouldCreateCookie_whenSuccessfulLogin() throws Exception {
-        HttpServletRequest requestMock = prepareRequestMock(ADMIN, PASSWORD);
-
-        HttpServletResponse responseMock = mock(HttpServletResponse.class);
-
-        new LoginServlet().doPost(requestMock, responseMock);
-
-        verifyParameters(requestMock);
-        verify(responseMock, atLeast(1)).addCookie(any());
-    }
-
-    @Test
-    public void servletShouldCreateSession_whenSuccessfulLogin() throws Exception {
-        HttpSession sessionMock = mock(HttpSession.class);
-        HttpServletRequest requestMock = prepareRequestMock(ADMIN, PASSWORD, sessionMock);
-
-        HttpServletResponse responseMock = mock(HttpServletResponse.class);
-
-
-        new LoginServlet().doPost(requestMock, responseMock);
-
-        verifyParameters(requestMock);
-        verify(sessionMock, atLeast(1)).setAttribute(PARAMETER_USERNAME, ADMIN);
-        HashSet<String> roles = new HashSet<>();
-        roles.add(ROLE_1);
-        roles.add(ROLE_2);
-        roles.add(ROLE_3);
-        verify(sessionMock, atLeast(1)).setAttribute(PARAMETER_ROLES, roles);
-        verify(sessionMock, atLeast(1)).setMaxInactiveInterval(FIVE_MINUTES);
-    }
-
 
     @Test
     public void servletShouldRedirectToSuccess_whenSuccessfulLogin() throws Exception {
